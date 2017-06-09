@@ -11,6 +11,7 @@ What does that mean? Compose? What does that mean? Let's find out.
 Dan Abramov explains [here](https://medium.com/@dan_abramov/mixins-are-dead-long-live-higher-order-components-94a0d2f9e750) why we should be using composition over inheritance. He explains how composition gives us a lot of freedom and reusability. How is this better than inheritance?
 Let's ask Facebook https://facebook.github.io/react/docs/composition-vs-inheritance.html. I like the part where they say
 > "At Facebook, we use React in thousands of components, and we haven't found any use cases where we would recommend creating component inheritance hierarchies."
+
 That is right, not even one use case out of thousands of components, by the creators of the library. Well, why is that? Because composition allows you to do _everything_ that you can do with inheritance from a functional approach. This architecture allows your code to be more flexible, extendable, and maintainable.
 
 ### What can we do with composition?
