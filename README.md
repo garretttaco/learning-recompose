@@ -24,5 +24,5 @@ Now the presentational components are concerned with how things look. They have 
 You can read more about the pseudo specifications for container/presentational components and their perks, below.
 
 https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0
-https://gist.github.com/chantastic/fc9e3853464dffdb1e3c)
+https://gist.github.com/chantastic/fc9e3853464dffdb1e3c
 
