@@ -1,5 +1,6 @@
 # learning-recompose
 **Disclaimer: This is a work in progress**
+
  Before we jump into recompose and all its glory, let us start with a little (re)fresher. Let's start with the meaning of Recompose
 > to compose again, differently.
 
@@ -14,8 +15,10 @@ That is right, not even one use case out of thousands of components, by the crea
 
 ### What can we do with composition?
 Not sold yet? Well, the first thing we can do is use the modern paradigm of the container and presentational components.
+
 **Container**
 The basic idea is that you have a container which handles business logic, data fetching, data manipulation, state management and lifecycle hooks. These actions are the sole purpose of the container. It then passes all this functionality and data down to its children to be manipulated further or displayed on the UI. The children can be more container components and presentational components.
+
 **Presentational**
 Now the presentational components are concerned with how things look. They have JSX/DOMmarkup and styles to display on the UI. All data and functionality that flows through this component are all passed in as props. Some believe that you can have a presentational component that manages UI state and that is a stateful functional or classical component.
 You can read more about the pseudo specifications for container/presentational components and their perks, below.
