@@ -1,21 +1,36 @@
-import React, { Component } from 'react'
-import logo from './logo.svg'
-import './App.css'
+import React from 'react'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import * as Subjects from './subjects'
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Let's learn Recompose!</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    )
-  }
+const subjects = {
+  Components: 'Components',
+  PropsVsState: 'Props vs. State',
+  Forms: 'Forms',
+  Testing: 'Testing',
+  Context: 'Context',
+  RenderProps: 'Render Props',
+  RenderOptimizations: 'Performance and Render Optimizations',
 }
+
+const SubjectRoute = ({ subjetKey, subjectName }) => (
+  <div>
+    <span>{subjectName}</span>
+    <Link to={`/${subjetKey}/exercise.html`}>exercise</Link>
+    <Link to={`/${subjetKey}/solution.html`}>solution</Link>
+  </div>
+)
+
+const Routes = () => {}
+
+const App = () => (
+  <Router>
+    <div className="app">
+
+      {Object.keys(subjects).map(subjetKey => (
+        <SubjectRoute subjetKey={subjetKey} subjectName={subjects[subjetKey]} />
+      ))}
+    </div>
+  </Router>
+)
 
 export default App

@@ -3,8 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "bootstrap-sass": "^3.3.7",
     "react": "^15.5.4",
-    "react-dom": "^15.5.4"
+    "react-addons-test-utils": "^15.6.0",
+    "react-bootstrap": "^0.31.0",
+    "react-dom": "^15.5.4",
+    "react-router-dom": "^4.1.1",
+    "recompose": "^0.23.5"
   },
   "devDependencies": {
     "autoprefixer": "7.1.0",
@@ -30,12 +35,14 @@
     "fs-extra": "3.0.1",
     "html-webpack-plugin": "2.28.0",
     "jest": "20.0.3",
+    "node-sass": "^4.5.3",
     "object-assign": "4.1.1",
     "postcss-flexbugs-fixes": "3.0.0",
     "postcss-loader": "2.0.5",
     "promise": "7.1.1",
     "react-dev-utils": "^3.0.0",
     "react-error-overlay": "^1.0.7",
+    "sass-loader": "^6.0.6",
     "style-loader": "0.17.0",
     "sw-precache-webpack-plugin": "0.9.1",
     "url-loader": "0.5.8",
