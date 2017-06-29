@@ -18,7 +18,6 @@
 //   needed to render it
 // - Make sure <GeoAddress> supports the user moving positions
 import React, { PropTypes } from 'react'
-import ReactDOM from 'react-dom'
 import LoadingDots from './utils/LoadingDots'
 import getAddressFromCoords from './utils/getAddressFromCoords'
 
@@ -26,24 +25,24 @@ class App extends React.Component {
   state = {
     coords: {
       latitude: null,
-      longitude: null
+      longitude: null,
     },
-    error: null
+    error: null,
   }
 
   componentDidMount() {
     this.geoId = navigator.geolocation.watchPosition(
-      (position) => {
+      position => {
         this.setState({
           coords: {
             latitude: position.coords.latitude,
-            longitude: position.coords.longitude
-          }
+            longitude: position.coords.longitude,
+          },
         })
       },
-      (error) => {
+      error => {
         this.setState({ error })
-      }
+      },
     )
   }
 
@@ -55,19 +54,17 @@ class App extends React.Component {
     return (
       <div>
         <h1>Geolocation</h1>
-        {this.state.error ? (
-          <div>Error: {this.state.error.message}</div>
-        ) : (
-          <dl>
-            <dt>Latitude</dt>
-            <dd>{this.state.coords.latitude || <LoadingDots/>}</dd>
-            <dt>Longitude</dt>
-            <dd>{this.state.coords.longitude || <LoadingDots/>}</dd>
-          </dl>
-        )}
+        {this.state.error
+          ? <div>Error: {this.state.error.message}</div>
+          : <dl>
+              <dt>Latitude</dt>
+              <dd>{this.state.coords.latitude || <LoadingDots />}</dd>
+              <dt>Longitude</dt>
+              <dd>{this.state.coords.longitude || <LoadingDots />}</dd>
+            </dl>}
       </div>
     )
   }
 }
 
-ReactDOM.render(<App/>, document.getElementById('app'))
+export { App as Exercise }

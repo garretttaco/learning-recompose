@@ -12,31 +12,30 @@
 // - Remember scroll position when you refresh the page
 ////////////////////////////////////////////////////////////////////////////////
 import React, { PropTypes } from 'react'
-import ReactDOM from 'react-dom'
 import * as RainbowListDelegate from './RainbowListDelegate'
-import './styles'
+import './styles.css'
 
 class RainbowList extends React.Component {
   static propTypes = {
     numRows: PropTypes.number.isRequired,
     rowHeight: PropTypes.number.isRequired,
-    renderRowAtIndex: PropTypes.func.isRequired
+    renderRowAtIndex: PropTypes.func.isRequired,
   }
 
   state = {
     availableHeight: 0,
-    scrollTop: 0
+    scrollTop: 0,
   }
 
   componentDidMount() {
     this.setState({
-      availableHeight: this.node.clientHeight
+      availableHeight: this.node.clientHeight,
     })
   }
 
-  handleScroll = (event) => {
+  handleScroll = event => {
     this.setState({
-      scrollTop: event.target.scrollTop
+      scrollTop: event.target.scrollTop,
     })
   }
 
@@ -57,14 +56,17 @@ class RainbowList extends React.Component {
       items.push(<li key={index}>{renderRowAtIndex(index)}</li>)
       index++
     }
+    console.log('--------------items', items)
 
     return (
       <div
         style={{ height: '100%', overflowY: 'scroll' }}
         onScroll={this.handleScroll}
-        ref={node => this.node = node}
+        ref={node => (this.node = node)}
       >
-        <ol style={{ paddingTop: (startIndex * rowHeight), pointerEvents: 'none', height: totalHeight }}>
+        <ol
+          style={{ paddingTop: startIndex * rowHeight, pointerEvents: 'none', height: totalHeight }}
+        >
           {items}
         </ol>
       </div>
@@ -72,11 +74,13 @@ class RainbowList extends React.Component {
   }
 }
 
-ReactDOM.render(
+const App = () => (
   <RainbowList
-    numRows={500000}
+    // numRows={500000}
+    numRows={500}
     rowHeight={RainbowListDelegate.rowHeight}
     renderRowAtIndex={RainbowListDelegate.renderRowAtIndex}
-  />,
-  document.getElementById('app')
+  />
 )
+
+export { App as Solution }

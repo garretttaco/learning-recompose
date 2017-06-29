@@ -19,14 +19,15 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import * as styles from './lib/styles'
 import data from './lib/data'
+import { run } from './tests'
 
 class Tabs extends React.Component {
   static propTypes = {
-    data: React.PropTypes.array.isRequired
+    data: React.PropTypes.array.isRequired,
   }
 
   state = {
-    activeTabIndex: 0
+    activeTabIndex: 0,
   }
 
   handleTabClick(activeTabIndex) {
@@ -35,15 +36,16 @@ class Tabs extends React.Component {
 
   renderTabs() {
     return this.props.data.map((tab, index) => {
-      const style = this.state.activeTabIndex === index ?
-        styles.activeTab : styles.tab
+      const style = this.state.activeTabIndex === index ? styles.activeTab : styles.tab
       return (
         <div
           className="Tab"
           key={tab.name}
           style={style}
           onClick={() => this.handleTabClick(index)}
-        >{tab.name}</div>
+        >
+          {tab.name}
+        </div>
       )
     })
   }
@@ -72,16 +74,22 @@ class Tabs extends React.Component {
 }
 
 class App extends React.Component {
+  state = {
+    tabs: data,
+  }
+
+  componentDidMount() {
+    run(this)
+  }
+
   render() {
     return (
       <div>
         <h1>Props v. State</h1>
-        <Tabs ref="tabs" data={this.props.tabs}/>
+        <Tabs ref="tabs" data={this.state.tabs} />
       </div>
     )
   }
 }
 
-ReactDOM.render(<App tabs={data}/>, document.getElementById('app'), function () {
-  require('./tests').run(this)
-})
+export { App as Exercise }

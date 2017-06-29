@@ -57,4 +57,4 @@ class CheckoutForm extends React.Component {
   }
 }
 
-ReactDOM.render(<CheckoutForm/>, document.getElementById('app'))
+export { CheckoutForm as Exercise }

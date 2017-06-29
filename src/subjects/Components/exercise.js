@@ -13,6 +13,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { run } from './tests'
 
 const styles = {}
 
@@ -22,16 +23,16 @@ styles.tab = {
   margin: 10,
   borderBottom: '4px solid',
   borderBottomColor: '#ccc',
-  cursor: 'pointer'
+  cursor: 'pointer',
 }
 
 styles.activeTab = {
   ...styles.tab,
-  borderBottomColor: '#000'
+  borderBottomColor: '#000',
 }
 
 styles.panel = {
-  padding: 10
+  padding: 10,
 }
 
 class Tabs extends React.Component {
@@ -53,22 +54,26 @@ class Tabs extends React.Component {
 }
 
 class App extends React.Component {
+  state = {
+    countries: [
+      { id: 1, name: 'USA', description: 'Land of the Free, Home of the brave' },
+      { id: 2, name: 'Brazil', description: 'Sunshine, beaches, and Carnival' },
+      { id: 3, name: 'Russia', description: 'World Cup 2018!' },
+    ],
+  }
+
+  componentDidMount() {
+    run(this)
+  }
+
   render() {
     return (
       <div>
         <h1>Countries</h1>
-        <Tabs data={this.props.countries}/>
+        <Tabs data={this.state.countries} />
       </div>
     )
   }
 }
 
-const DATA = [
-  { id: 1, name: 'USA', description: 'Land of the Free, Home of the brave' },
-  { id: 2, name: 'Brazil', description: 'Sunshine, beaches, and Carnival' },
-  { id: 3, name: 'Russia', description: 'World Cup 2018!' }
-]
-
-ReactDOM.render(<App countries={DATA}/>, document.getElementById('app'), function () {
-  require('./tests').run(this)
-})
+export { App as Exercise }

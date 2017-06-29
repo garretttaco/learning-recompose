@@ -16,15 +16,15 @@
 // props down to <Tabs> (since it should now be stateless).
 ////////////////////////////////////////////////////////////////////////////////
 import React from 'react'
-import ReactDOM from 'react-dom'
 import * as styles from './lib/styles'
 import data from './lib/data'
+import { run } from './tests'
 
 class Tabs extends React.Component {
   static propTypes = {
     activeTabIndex: React.PropTypes.number.isRequired,
     onActivate: React.PropTypes.func.isRequired,
-    data: React.PropTypes.array.isRequired
+    data: React.PropTypes.array.isRequired,
   }
 
   handleTabClick(activeTabIndex) {
@@ -33,15 +33,16 @@ class Tabs extends React.Component {
 
   renderTabs() {
     return this.props.data.map((tab, index) => {
-      const style = this.props.activeTabIndex === index ?
-        styles.activeTab : styles.tab
+      const style = this.props.activeTabIndex === index ? styles.activeTab : styles.tab
       return (
         <div
           className="Tab"
           key={tab.name}
           style={style}
           onClick={() => this.handleTabClick(index)}
-        >{tab.name}</div>
+        >
+          {tab.name}
+        </div>
       )
     })
   }
@@ -71,7 +72,12 @@ class Tabs extends React.Component {
 
 class App extends React.Component {
   state = {
-    activeTabIndex: 0
+    activeTabIndex: 0,
+    tabs: data,
+  }
+
+  componentDidMount() {
+    run(this)
   }
 
   render() {
@@ -82,13 +88,11 @@ class App extends React.Component {
           ref="tabs"
           activeTabIndex={this.state.activeTabIndex}
           onActivate={activeTabIndex => this.setState({ activeTabIndex })}
-          data={this.props.tabs}
+          data={this.state.tabs}
         />
       </div>
     )
   }
 }
 
-ReactDOM.render(<App tabs={data}/>, document.getElementById('app'), function () {
-  require('./tests').run(this)
-})
+export { App as Solution }

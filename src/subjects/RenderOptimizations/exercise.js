@@ -12,15 +12,14 @@
 // - Remember scroll position when you refresh the page
 ////////////////////////////////////////////////////////////////////////////////
 import React, { PropTypes } from 'react'
-import ReactDOM from 'react-dom'
 import * as RainbowListDelegate from './RainbowListDelegate'
-import './styles'
+import './styles.css'
 
 class RainbowList extends React.Component {
   static propTypes = {
     numRows: PropTypes.number.isRequired,
     rowHeight: PropTypes.number.isRequired,
-    renderRowAtIndex: PropTypes.func.isRequired
+    renderRowAtIndex: PropTypes.func.isRequired,
   }
 
   render() {
@@ -45,11 +44,12 @@ class RainbowList extends React.Component {
   }
 }
 
-ReactDOM.render(
+const App = () => (
   <RainbowList
     numRows={500}
     rowHeight={RainbowListDelegate.rowHeight}
     renderRowAtIndex={RainbowListDelegate.renderRowAtIndex}
-  />,
-  document.getElementById('app')
+  />
 )
+
+export { App as Exercise }
