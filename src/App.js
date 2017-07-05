@@ -1,11 +1,11 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import { Panel, ListGroup, ListGroupItem, Navbar, Col, Clearfix } from 'react-bootstrap'
-import * as Subjects from './subjects/index.js'
+import * as Subjects from './lessons/index.js'
 import './shared.css'
 
 const subjects = {
-  Components: 'Components',
+  StateAsProps: 'State as props',
   RenderProps: 'Render Props',
   PropsVsState: 'Props vs. State',
   Forms: 'Forms',
@@ -30,9 +30,9 @@ const SubjectRoute = ({ subjectKey, subjectName, incr }) => (
 )
 
 const Routes = () => (
-  <div>
+  <div className="container">
     {Object.keys(subjects).map(subjectKey => (
-      <div>
+      <div key={subjectKey}>
         <Route path={`/${subjectKey}/exercise`} component={Subjects[`${subjectKey}Exercise`]} />
         <Route path={`/${subjectKey}/solution`} component={Subjects[`${subjectKey}Solution`]} />
       </div>
@@ -62,11 +62,12 @@ const App = () => (
           </Navbar.Brand>
         </Navbar.Header>
       </Navbar>
-
       <Routes />
-      <Switch>
-        <Route path="/" exact component={Home} />
-      </Switch>
+      <div className="container">
+        <Switch>
+          <Route path="/" exact component={Home} />
+        </Switch>
+      </div>
     </div>
   </Router>
 )

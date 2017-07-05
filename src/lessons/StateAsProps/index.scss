@@ -1,0 +1,16 @@
+.tab {
+  display: inline-block;
+  padding: 10px;
+  margin: 10px;
+  border-bottom: 4px solid;
+  border-bottom-color: #ccc;
+  cursor: pointer;
+
+  &.active {
+    border-bottom-color: #000;
+  }
+}
+
+.panel {
+  padding: 10px;
+}

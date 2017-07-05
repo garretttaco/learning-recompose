@@ -3,4 +3,4 @@ export { Exercise as RenderOptimizationsExercise, Solution as RenderOptimization
 export { Exercise as PropsVsStateExercise, Solution as PropsVsStateSolution  } from './PropsVsState/index.js'
 export { Exercise as FormsExercise, Solution as FormsSolution  } from './Forms/index.js'
 export { Exercise as ContextExercise, Solution as ContextSolution  } from './Context/index.js'
-export { Exercise as ComponentsExercise, Solution as ComponentsSolution  } from './Components/index.js'
+export { Exercise as StateAsPropsExercise, Solution as StateAsPropsSolution  } from './StateAsProps/index.js'
