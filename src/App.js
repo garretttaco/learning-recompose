@@ -16,13 +16,13 @@ const subjects = {
 
 const SubjectRoute = ({ subjectKey, subjectName, incr }) => (
   <ListGroupItem>
-    <Col sm="10">
+    <Col sm={10}>
       <span>{incr + 1}. {subjectName}</span>
     </Col>
-    <Col sm="1">
+    <Col sm={1}>
       <Link to={`/${subjectKey}/exercise`}>Exercise</Link>
     </Col>
-    <Col sm="1">
+    <Col sm={1}>
       <Link to={`/${subjectKey}/solution`}>Solution</Link>
     </Col>
     <Clearfix />
@@ -45,7 +45,12 @@ const Home = () => (
     <Panel header="Workshop subjects">
       <ListGroup fill>
         {Object.keys(subjects).map((subjectKey, key) => (
-          <SubjectRoute subjectKey={subjectKey} subjectName={subjects[subjectKey]} incr={key} />
+          <SubjectRoute
+            key={subjectKey}
+            subjectKey={subjectKey}
+            subjectName={subjects[subjectKey]}
+            incr={key}
+          />
         ))}
       </ListGroup>
     </Panel>

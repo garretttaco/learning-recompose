@@ -1,9 +1,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Exercise:
 //
+// Using Recompose and the container/presentational component pattern:
 // - Render a tab for each country with its name in the tab
 // - Make it so that you can click on a tab and it will appear active
-//   while the others appear inactive
+//   while the others appear inactive. (Hint: this will require withState and withHandlers)
 // - Make it so the panel renders the correct content for the selected tab
 //
 // Don't forget to refer to the recompose docs!
@@ -20,26 +21,6 @@ import { withState } from 'recompose'
 // To combine classNames
 // import classnames from 'classnames'
 import './index.scss'
-
-const styles = {}
-
-styles.tab = {
-  display: 'inline-block',
-  padding: 10,
-  margin: 10,
-  borderBottom: '4px solid',
-  borderBottomColor: '#ccc',
-  cursor: 'pointer',
-}
-
-styles.activeTab = {
-  ...styles.tab,
-  borderBottomColor: '#000',
-}
-
-styles.panel = {
-  padding: 10,
-}
 
 const Tabs = () => (
   <div className="tabs">
@@ -62,7 +43,7 @@ const defaultState = [
 ]
 
 const AppComponent = ({ countries }) => (
-  <div>
+  <div className="state-as-props">
     <h1>Countries</h1>
     <Tabs data={countries} />
   </div>

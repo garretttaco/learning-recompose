@@ -1,19 +1,21 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Exercise:
 //
-// Using Recompose and the container/presentational component pattern:
-// - Render a tab for each country with its name in the tab
-// - Make it so that you can click on a tab and it will appear active
-//   while the others appear inactive. (Hint: this will require withState and withHandlers)
-// - Make it so the panel renders the correct content for the selected tab
+// Showing feedback in the UI is very important for user experience. However, this can lead to messy render functions.
+// Let's utilize HoCs to better organization our code to handle these different states.
+// - Extract the conditional render logic, for loading, error and success into their own components.
+// By using Recompose's branch HoC, https://github.com/acdlite/recompose/blob/master/docs/API.md#branch do the following
+// - Show a loading spinner instead of the content. Once the content has finished loading, show that.
+// - Show an error message when we get an error. Make sure to not show the content or the loading spinner if we get in this error state.
 //
 // Don't forget to refer to the recompose docs!
 // https://github.com/acdlite/recompose/blob/master/docs/API.md
 //
 // Got extra time?
 //
-// - Make <Tabs> generic so that it doesn't know anything about
-//   country data (Hint: good propTypes help)
+// - Once we successfully load the content, show a success message.
+// (Hint: renderNothing might come in handy, https://github.com/acdlite/recompose/blob/master/docs/API.md#rendernothing)
+// - Make the success message disappear after 2 seconds.
 ////////////////////////////////////////////////////////////////////////////////
 import React from 'react'
 import pt from 'prop-types'
