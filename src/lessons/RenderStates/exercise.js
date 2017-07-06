@@ -24,6 +24,8 @@ import fetchContent from './fetchContent'
 import isEmpty from 'lodash/isEmpty'
 import LoadingSpinner from './LoadingSpinner'
 import './index.scss'
+import QuoteLeft from 'react-icons/lib/fa/quote-left'
+import QuoteRight from 'react-icons/lib/fa/quote-right'
 
 export class App extends Component {
   state = {
@@ -41,16 +43,16 @@ export class App extends Component {
     try {
       this.setState({ loading: true })
       const quote = await fetchContent()
-      this.setState({ loading: false, quote, loadError: false })
+      this.setState({ loading: false, quote, loadError: false, loadSuccess: true })
     } catch (error) {
-      this.setState({ loading: false, loadError: true })
+      this.setState({ loading: false, loadError: true, loadSuccess: false })
     }
   }
 
   render() {
     const { loading, loadError, loadSuccess, quote } = this.state
     return (
-      <div className="owl">
+      <div className="render-states owl">
         {loadSuccess &&
           <Alert bsStyle="success">
             <strong>Success!</strong> We loaded your quote successfully
@@ -63,7 +65,11 @@ export class App extends Component {
                 </Alert>
               : !isEmpty(quote)
                   ? <Panel header={quote.title}>
+                      <QuoteLeft className="quote left" />
+                      {' '}
                       {quote.content}
+                      {' '}
+                      <QuoteRight className="quote right" />
                     </Panel>
                   : null}
         <Button onClick={this.fetchContent} disabled={loading}>New quote</Button>

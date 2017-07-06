@@ -1,19 +1,14 @@
 .render-states {
-  .tab {
-    display: inline-block;
-    padding: 10px;
-    margin: 10px;
-    border-bottom: 4px solid;
-    border-bottom-color: #ccc;
-    cursor: pointer;
+  .quote {
+    color: #d4d2d2;
 
-    &.active {
-      border-bottom-color: #000;
+    &.left {
+      margin-top: -10px;
     }
-  }
 
-  .panel {
-    padding: 10px;
+    &.right {
+      margin-bottom: -10px;
+    }
   }
 
 }

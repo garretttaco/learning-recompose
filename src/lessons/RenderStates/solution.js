@@ -50,9 +50,9 @@ const QuoteComponent = ({ quote }) => (
 
 // Conditionally render based on the state of the xhr
 const Quote = compose(
-  branch(({ quote }) => isEmpty(quote), renderNothing),
-  branch(({ loadError }) => loadError, renderComponent(ErrorComponent)),
   branch(({ loading }) => loading, renderComponent(LoadingSpinner)),
+  branch(({ loadError }) => loadError, renderComponent(ErrorComponent)),
+  branch(({ quote }) => isEmpty(quote), renderNothing),
 )(QuoteComponent)
 
 const enhance = compose(
