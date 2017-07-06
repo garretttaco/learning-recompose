@@ -48,13 +48,13 @@ const TabsComponent = ({ data, activeTabIndex, updateActiveTabIndex }) => {
         key={tab.id}
         index={index}
         isActive={isActive}
-        content={tab.name}
+        content={tab.label}
         onClickUpdateIndex={updateActiveTabIndex}
       />
     )
   })
   const activeTab = data[activeTabIndex]
-  const content = activeTab && activeTab.description
+  const content = activeTab && activeTab.content
   return (
     <div className="tabs">
       {tabs}
@@ -81,9 +81,9 @@ const Tabs = compose(
 )(TabsComponent)
 
 const defaultState = [
-  { id: 1, name: 'USA', description: 'Land of the Free, Home of the brave' },
-  { id: 2, name: 'Brazil', description: 'Sunshine, beaches, and Carnival' },
-  { id: 3, name: 'Russia', description: 'World Cup 2018!' },
+  { id: 1, label: 'USA', content: 'Land of the Free, Home of the brave' },
+  { id: 2, label: 'Brazil', content: 'Sunshine, beaches, and Carnival' },
+  { id: 3, label: 'Russia', content: 'World Cup 2018!' },
 ]
 
 const AppComponent = ({ countries }) => (
