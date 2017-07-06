@@ -1,4 +1,7 @@
+import './shared.scss'
+
 export { Exercise as RenderPropsExercise, Solution as RenderPropsSolution  } from './RenderProps/index.js'
+export { Exercise as RenderStatesExercise, Solution as RenderStatesSolution  } from './RenderStates/index.js'
 export { Exercise as RenderOptimizationsExercise, Solution as RenderOptimizationsSolution  } from './RenderOptimizations/index.js'
 export { Exercise as PropsVsStateExercise, Solution as PropsVsStateSolution  } from './PropsVsState/index.js'
 export { Exercise as FormsExercise, Solution as FormsSolution  } from './Forms/index.js'

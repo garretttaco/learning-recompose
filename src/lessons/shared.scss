@@ -1,0 +1,46 @@
+.spin {
+  -webkit-animation: spin 1000ms infinite linear;
+  animation: spin 1000ms infinite linear;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+
+// Vertical Gutters
+.owl {
+  /**
+   * Apply to containers to get nice gutters between vertical items
+   *
+   * More Details: https://www.youtube.com/watch?v=w4skJXB03Ho&noredirect=1
+   */
+
+  // Reset all first-child elements to have no vertical margin
+  > * {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  // Its the "Lobotomized Owl"
+  > * + * {
+    margin-top: 1em;
+  }
+}

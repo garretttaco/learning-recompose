@@ -3,6 +3,7 @@
 //
 // Showing feedback in the UI is very important for user experience. However, this can lead to messy render functions.
 // Let's utilize HoCs to better organization our code to handle these different states.
+// Convert the class component into a stateless functional component by extracting the state, methods and lifecycle methods into Recompose HoCs.
 // - Extract the conditional render logic, for loading, error and success into their own components.
 // By using Recompose's branch HoC, https://github.com/acdlite/recompose/blob/master/docs/API.md#branch do the following
 // - Show a loading spinner instead of the content. Once the content has finished loading, show that.
@@ -13,92 +14,92 @@
 //
 // Got extra time?
 //
-// - Once we successfully load the content, show a success message.
+// - Once we successfully load the content, use the branch HoC on a component that conditionally renders the success message.
 // (Hint: renderNothing might come in handy, https://github.com/acdlite/recompose/blob/master/docs/API.md#rendernothing)
-// - Make the success message disappear after 2 seconds.
+// - Make the success message disappear after 3 seconds.
 ////////////////////////////////////////////////////////////////////////////////
 import React from 'react'
-import pt from 'prop-types'
-import { compose, withState, withHandlers } from 'recompose'
-import classnames from 'classnames'
+import {
+  compose,
+  withState,
+  withHandlers,
+  lifecycle,
+  branch,
+  renderComponent,
+  renderNothing,
+} from 'recompose'
+import { Alert, Button, Panel } from 'react-bootstrap'
+import fetchContent from './fetchContent'
+import isEmpty from 'lodash/isEmpty'
+import LoadingSpinner from './LoadingSpinner'
 import './index.scss'
 
-const TabComponent = ({ content, style, onClick, isActive }) => {
-  const classNames = classnames('tab', { active: isActive })
-  return (
-    <div className={classNames} onClick={onClick}>
-      {content}
-    </div>
-  )
-}
+// Render an error message if our xhr request fails
+const ErrorComponent = () => (
+  <Alert bsStyle="danger">
+    <strong>Error!</strong> We encountered an error while loading your content!
+  </Alert>
+)
 
-TabComponent.propTypes = {
-  content: pt.string.isRequired,
-  onClick: pt.func.isRequired,
-  isActive: pt.bool,
-}
+// Render the quote if none of the other conditions are met
+const QuoteComponent = ({ quote }) => (
+  <Panel header={quote.title}>
+    {quote.content}
+  </Panel>
+)
 
-const Tab = withHandlers({
-  onClick: ({ index, onClickUpdateIndex }) => () => onClickUpdateIndex(index),
-})(TabComponent)
+// Conditionally render based on the state of the xhr
+const Quote = compose(
+  branch(({ quote }) => isEmpty(quote), renderNothing),
+  branch(({ loadError }) => loadError, renderComponent(ErrorComponent)),
+  branch(({ loading }) => loading, renderComponent(LoadingSpinner)),
+)(QuoteComponent)
 
-const TabsComponent = ({ data, activeTabIndex, updateActiveTabIndex }) => {
-  const tabs = data.map((country, index) => {
-    const isActive = index === activeTabIndex
-    return (
-      <Tab
-        key={country.id}
-        index={index}
-        isActive={isActive}
-        content={country.name}
-        onClickUpdateIndex={updateActiveTabIndex}
-      />
-    )
-  })
-  const activeCountry = data[activeTabIndex]
-  const content = activeCountry && activeCountry.description
-  return (
-    <div className="tabs">
-      {tabs}
-      <div className="panel">
-        {content}
-      </div>
-    </div>
-  )
-}
-
-TabsComponent.propTypes = {
-  data: pt.array.isRequired,
-  activeTabIndex: pt.number.isRequired,
-  updateActiveTabIndex: pt.func.isRequired,
-}
-
-const Tabs = compose(
-  withState('activeTabIndex', 'updateActiveTabIndex', 0),
+const enhance = compose(
+  withState('loading', 'updateLoading', false),
+  withState('loadError', 'updateLoadError', false),
+  withState('loadSuccess', 'updateLoadSuccess', false),
+  withState('quote', 'updateQuote', {}),
   withHandlers({
-    selectTabIndex: ({ updateActiveTabIndex }) => activeTabIndex => {
-      updateActiveTabIndex(activeTabIndex)
+    fetchContent: ({
+      updateLoading,
+      updateQuote,
+      updateLoadError,
+      updateLoadSuccess,
+    }) => async () => {
+      try {
+        updateLoading(true)
+        updateLoadSuccess(false)
+        const quote = await fetchContent()
+        updateLoading(false)
+        updateLoadSuccess(true)
+        updateQuote(quote)
+        updateLoadError(false)
+      } catch (error) {
+        updateLoadSuccess(false)
+        updateLoadError(true)
+        updateLoading(false)
+      }
     },
   }),
-)(TabsComponent)
+  lifecycle({
+    componentDidMount() {
+      this.props.fetchContent()
+    },
+  }),
+)
 
-const defaultState = [
-  { id: 1, name: 'USA', description: 'Land of the Free, Home of the brave' },
-  { id: 2, name: 'Brazil', description: 'Sunshine, beaches, and Carnival' },
-  { id: 3, name: 'Russia', description: 'World Cup 2018!' },
-]
-
-const AppComponent = ({ countries }) => (
-  <div className="state-as-props">
-    <h1>Countries</h1>
-    <Tabs data={countries} />
+const AppComponent = ({ fetchContent, ...props }) => (
+  <div className="owl">
+    {props.loadSuccess &&
+      <Alert bsStyle="success">
+        <strong>Success!</strong> We loaded your quote successfully
+      </Alert>}
+    <Quote {...props} />
+    <Button onClick={fetchContent} disabled={props.loading}>New quote</Button>
   </div>
 )
 
-AppComponent.propTypes = {
-  countries: pt.array.isRequired,
-}
-
-const App = withState('countries', 'updateCountries', defaultState)(AppComponent)
+const App = enhance(AppComponent)
 
 export { App as Solution }

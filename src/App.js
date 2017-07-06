@@ -1,29 +1,30 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import { Panel, ListGroup, ListGroupItem, Navbar, Col, Clearfix } from 'react-bootstrap'
-import * as Subjects from './lessons/index.js'
+import * as Lessons from './lessons/index.js'
 import './shared.css'
 
-const subjects = {
-  StateAsProps: 'State as props',
-  RenderProps: 'Render Props',
-  PropsVsState: 'Props vs. State',
-  Forms: 'Forms',
-  RenderOptimizations: 'Performance and Render Optimizations',
-  Context: 'Context',
-  Testing: 'Testing',
-}
+const lessons = [
+  { key: 'StateAsProps', displayName: 'State as props' },
+  { key: 'RenderStates', displayName: 'Render states' },
+  { key: 'RenderProps', displayName: 'Render Props' },
+  { key: 'PropsVsState', displayName: 'Props vs. State' },
+  { key: 'Forms', displayName: 'Forms' },
+  { key: 'RenderOptimizations', displayName: 'Performance and Render Optimizations' },
+  { key: 'Context', displayName: 'Context' },
+  { key: 'Testing', displayName: 'Testing' },
+]
 
-const SubjectRoute = ({ subjectKey, subjectName, incr }) => (
+const LessonRoute = ({ lessonKey, lessonName, incr }) => (
   <ListGroupItem>
     <Col sm={10}>
-      <span>{incr + 1}. {subjectName}</span>
+      <span>{incr + 1}. {lessonName}</span>
     </Col>
     <Col sm={1}>
-      <Link to={`/${subjectKey}/exercise`}>Exercise</Link>
+      <Link to={`/${lessonKey}/exercise`}>Exercise</Link>
     </Col>
     <Col sm={1}>
-      <Link to={`/${subjectKey}/solution`}>Solution</Link>
+      <Link to={`/${lessonKey}/solution`}>Solution</Link>
     </Col>
     <Clearfix />
   </ListGroupItem>
@@ -31,10 +32,10 @@ const SubjectRoute = ({ subjectKey, subjectName, incr }) => (
 
 const Routes = () => (
   <div className="container">
-    {Object.keys(subjects).map(subjectKey => (
-      <div key={subjectKey}>
-        <Route path={`/${subjectKey}/exercise`} component={Subjects[`${subjectKey}Exercise`]} />
-        <Route path={`/${subjectKey}/solution`} component={Subjects[`${subjectKey}Solution`]} />
+    {lessons.map(lesson => (
+      <div key={lesson.key}>
+        <Route path={`/${lesson.key}/exercise`} component={Lessons[`${lesson.key}Exercise`]} />
+        <Route path={`/${lesson.key}/solution`} component={Lessons[`${lesson.key}Solution`]} />
       </div>
     ))}
   </div>
@@ -42,13 +43,13 @@ const Routes = () => (
 
 const Home = () => (
   <main>
-    <Panel header="Workshop subjects">
+    <Panel header="Workshop lessons">
       <ListGroup fill>
-        {Object.keys(subjects).map((subjectKey, key) => (
-          <SubjectRoute
-            key={subjectKey}
-            subjectKey={subjectKey}
-            subjectName={subjects[subjectKey]}
+        {lessons.map((lesson, key) => (
+          <LessonRoute
+            key={lesson.key}
+            lessonKey={lesson.key}
+            lessonName={lesson.displayName}
             incr={key}
           />
         ))}

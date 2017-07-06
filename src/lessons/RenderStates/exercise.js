@@ -3,7 +3,7 @@
 //
 // Showing feedback in the UI is very important for user experience. However, this can lead to messy render functions.
 // Let's utilize HoCs to better organization our code to handle these different states.
-// Convert the class component into a stateless functional component by extracting the state and lifecycle methods into Recompose HoCs.
+// Convert the class component into a stateless functional component by extracting the state, methods and lifecycle methods into Recompose HoCs.
 // - Extract the conditional render logic, for loading, error and success into their own components.
 // By using Recompose's branch HoC, https://github.com/acdlite/recompose/blob/master/docs/API.md#branch do the following
 // - Show a loading spinner instead of the content. Once the content has finished loading, show that.
@@ -19,19 +19,18 @@
 // - Make the success message disappear after 3 seconds.
 ////////////////////////////////////////////////////////////////////////////////
 import React, { Component } from 'react'
-import pt from 'prop-types'
-import { Alert } from 'react-bootstrap'
+import { Alert, Button, Panel } from 'react-bootstrap'
 import fetchContent from './fetchContent'
+import isEmpty from 'lodash/isEmpty'
+import LoadingSpinner from './LoadingSpinner'
 import './index.scss'
-
-const LoadingSpinner = () => null
 
 export class App extends Component {
   state = {
     loading: false,
     loadError: false,
     loadSuccess: false,
-    content: null,
+    quote: {},
   }
 
   componentDidMount() {
@@ -39,29 +38,35 @@ export class App extends Component {
   }
 
   fetchContent = async () => {
-    const content = await fetchContent()
-    this.setState({ content })
+    try {
+      this.setState({ loading: true })
+      const quote = await fetchContent()
+      this.setState({ loading: false, quote, loadError: false })
+    } catch (error) {
+      this.setState({ loading: false, loadError: true })
+    }
   }
 
   render() {
-    const { loading, loadError, loadSuccess, content } = this.state
-    if (loading) {
-      return <LoadingSpinner />
-    }
-    if (loadError) {
-      return (
-        <Alert bsStyle="danger">
-          <strong>Error!</strong> We encountered an error while loading your content!
-        </Alert>
-      )
-    }
+    const { loading, loadError, loadSuccess, quote } = this.state
     return (
-      <div>
+      <div className="owl">
         {loadSuccess &&
           <Alert bsStyle="success">
-            <strong>Success!</strong> We loaded your content successfully
+            <strong>Success!</strong> We loaded your quote successfully
           </Alert>}
-        {content}
+        {loading
+          ? <LoadingSpinner />
+          : loadError
+              ? <Alert bsStyle="danger">
+                  <strong>Error!</strong> We encountered an error while loading your content!
+                </Alert>
+              : !isEmpty(quote)
+                  ? <Panel header={quote.title}>
+                      {quote.content}
+                    </Panel>
+                  : null}
+        <Button onClick={this.fetchContent} disabled={loading}>New quote</Button>
       </div>
     )
   }
