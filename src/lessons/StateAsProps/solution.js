@@ -41,20 +41,20 @@ const Tab = withHandlers({
 })(TabComponent)
 
 const TabsComponent = ({ data, activeTabIndex, updateActiveTabIndex }) => {
-  const tabs = data.map((country, index) => {
+  const tabs = data.map((tab, index) => {
     const isActive = index === activeTabIndex
     return (
       <Tab
-        key={country.id}
+        key={tab.id}
         index={index}
         isActive={isActive}
-        content={country.name}
+        content={tab.name}
         onClickUpdateIndex={updateActiveTabIndex}
       />
     )
   })
-  const activeCountry = data[activeTabIndex]
-  const content = activeCountry && activeCountry.description
+  const activeTab = data[activeTabIndex]
+  const content = activeTab && activeTab.description
   return (
     <div className="tabs">
       {tabs}
