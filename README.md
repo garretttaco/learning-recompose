@@ -1,5 +1,6 @@
 # learning-recompose
 **Disclaimer: This is a work in progress**
+This repository was created for a [workshop event for PhoenixReactJS](https://www.meetup.com/Phoenix-ReactJS/events/241181068/)
 
  Before we jump into recompose and all its glory, let us start with a little (re)fresher. Let's start with the meaning of Recompose
 > to compose again, differently.
