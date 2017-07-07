@@ -1,5 +1,6 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import { withRouter } from 'react-router'
 import { Panel, ListGroup, ListGroupItem, Navbar, Col, Clearfix } from 'react-bootstrap'
 import * as Lessons from './lessons/index.js'
 import './shared.css'
@@ -58,21 +59,34 @@ const Home = () => (
   </main>
 )
 
+const Header = withRouter(({ location }) => (
+  <Navbar>
+    <Navbar.Header>
+      <Navbar.Brand>
+        <Link to="/">Learning Recompose</Link>
+      </Navbar.Brand>
+    </Navbar.Header>
+    {location.pathname !== '/' &&
+      <span>
+        {location.pathname.includes('solution') &&
+          <Navbar.Text pullRight>
+            <Link to={`./exercise`}>Exercise</Link>
+          </Navbar.Text>}
+        {location.pathname.includes('exercise') &&
+          <Navbar.Text pullRight>
+            <Link to={`./solution`}>Solution</Link>
+          </Navbar.Text>}
+      </span>}
+  </Navbar>
+))
+
 const App = () => (
   <Router>
     <div className="app">
-      <Navbar>
-        <Navbar.Header>
-          <Navbar.Brand>
-            <Link to="/">Learning Recompose</Link>
-          </Navbar.Brand>
-        </Navbar.Header>
-      </Navbar>
+      <Header />
       <Routes />
       <div className="container">
-        <Switch>
-          <Route path="/" exact component={Home} />
-        </Switch>
+        <Route path="/" exact component={Home} />
       </div>
     </div>
   </Router>

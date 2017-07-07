@@ -16,16 +16,16 @@
 //
 // - Once we successfully load the content, use the branch HoC on a component that conditionally renders the success message.
 // (Hint: renderNothing might come in handy, https://github.com/acdlite/recompose/blob/master/docs/API.md#rendernothing)
-// - Make the success message disappear after 3 seconds.
+// - Make sure the success message still disappears after 1.5 seconds.
 ////////////////////////////////////////////////////////////////////////////////
 import React, { Component } from 'react'
 import { Alert, Button, Panel } from 'react-bootstrap'
 import fetchContent from './fetchContent'
 import isEmpty from 'lodash/isEmpty'
 import LoadingSpinner from './LoadingSpinner'
-import './index.scss'
 import QuoteLeft from 'react-icons/lib/fa/quote-left'
 import QuoteRight from 'react-icons/lib/fa/quote-right'
+import './index.scss'
 
 export class App extends Component {
   state = {
@@ -39,11 +39,19 @@ export class App extends Component {
     this.fetchContent()
   }
 
+  brieflyShow = () => {
+    this.setState({ loadSuccess: true })
+    return setTimeout(() => {
+      this.setState({ loadSuccess: false })
+    }, 1500)
+  }
+
   fetchContent = async () => {
     try {
-      this.setState({ loading: true })
+      this.setState({ loading: true, loadSuccess: false })
       const quote = await fetchContent()
-      this.setState({ loading: false, quote, loadError: false, loadSuccess: true })
+      this.brieflyShow()
+      this.setState({ loading: false, quote, loadError: false })
     } catch (error) {
       this.setState({ loading: false, loadError: true, loadSuccess: false })
     }

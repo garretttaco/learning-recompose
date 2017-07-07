@@ -1,19 +1,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Exercise:
 //
-// Using Recompose and the container/presentational component pattern:
-// - Render a tab for each country with its name in the tab
-// - Make it so that you can click on a tab and it will appear active
-//   while the others appear inactive. (Hint: this will require withState and withHandlers)
-// - Make it so the panel renders the correct content for the selected tab
+// Using Recompose's HoCs and the container/presentational component pattern:
+// - Convert the App component into a stateless functional component. Abstract the state into an HoC (Hint: use withState).
+// - Convert the Tabs component into a Stateless functional component. Abstract the methods and state into HoCs (Hint: use withState and withHandlers)
+// - Convert Tab component into a stateless functional component. Abstract the method into an HoC. (Hint: use withHandlers)
 //
 // Don't forget to refer to the recompose docs!
 // https://github.com/acdlite/recompose/blob/master/docs/API.md
 //
-// Got extra time?
-//
-// - Make <Tabs> generic so that it doesn't know anything about
-//   country data (Hint: good propTypes help)
 ////////////////////////////////////////////////////////////////////////////////
 import React from 'react'
 import pt from 'prop-types'

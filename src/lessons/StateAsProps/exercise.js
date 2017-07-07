@@ -1,58 +1,98 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Exercise:
 //
-// Using Recompose and the container/presentational component pattern:
-// - Render a tab for each country with its name in the tab
-// - Make it so that you can click on a tab and it will appear active
-//   while the others appear inactive. (Hint: this will require withState and withHandlers)
-// - Make it so the panel renders the correct content for the selected tab
+// Using Recompose's HoCs and the container/presentational component pattern:
+// - Convert the App component into a stateless functional component. Abstract the state into an HoC (Hint: use withState).
+// - Convert the Tabs component into a Stateless functional component. Abstract the methods and state into HoCs (Hint: use withState and withHandlers)
+// - Convert Tab component into a stateless functional component. Abstract the method into an HoC. (Hint: use withHandlers)
 //
 // Don't forget to refer to the recompose docs!
 // https://github.com/acdlite/recompose/blob/master/docs/API.md
 //
-// Got extra time?
-//
-// - Make <Tabs> generic so that it doesn't know anything about
-//   country data (Hint: good propTypes help)
 ////////////////////////////////////////////////////////////////////////////////
 import React from 'react'
 import pt from 'prop-types'
-import { withState } from 'recompose'
-// To combine classNames
-// import classnames from 'classnames'
+// import { compose, withState, withHandlers } from 'recompose'
+import classnames from 'classnames'
 import './index.scss'
 
-const Tabs = () => (
-  <div className="tabs">
-    <div className="tab active">
-      Active
-    </div>
-    <div className="tab">
-      Inactive
-    </div>
-    <div className="panel">
-      Panel
-    </div>
-  </div>
-)
+class Tab extends React.Component {
+  static propTypes = {
+    content: pt.string.isRequired,
+    onClickUpdateIndex: pt.func.isRequired,
+    isActive: pt.bool,
+  }
 
-const defaultState = [
-  { id: 1, name: 'USA', description: 'Land of the Free, Home of the brave' },
-  { id: 2, name: 'Brazil', description: 'Sunshine, beaches, and Carnival' },
-  { id: 3, name: 'Russia', description: 'World Cup 2018!' },
-]
+  onClickUpdateIndex = () => {
+    const { onClickUpdateIndex, index } = this.props
+    onClickUpdateIndex(index)
+  }
 
-const AppComponent = ({ countries }) => (
-  <div className="state-as-props">
-    <h1>Countries</h1>
-    <Tabs data={countries} />
-  </div>
-)
-
-AppComponent.propTypes = {
-  countries: pt.array.isRequired,
+  render() {
+    const { isActive, content } = this.props
+    const classNames = classnames('tab', { active: isActive })
+    return (
+      <div className={classNames} onClick={this.onClickUpdateIndex}>
+        {content}
+      </div>
+    )
+  }
 }
 
-const App = withState('countries', 'updateCountries', defaultState)(AppComponent)
+class Tabs extends React.Component {
+  state = {
+    activeTabIndex: 0,
+  }
+
+  selectTabIndex = index => {
+    this.setState({ activeTabIndex: index })
+  }
+
+  render() {
+    const { data } = this.props
+    const { activeTabIndex } = this.state
+    const tabs = data.map((tab, index) => {
+      const isActive = index === activeTabIndex
+      return (
+        <Tab
+          key={tab.id}
+          index={index}
+          isActive={isActive}
+          content={tab.label}
+          onClickUpdateIndex={this.selectTabIndex}
+        />
+      )
+    })
+    const activeTab = data[activeTabIndex]
+    const content = activeTab && activeTab.content
+    return (
+      <div className="tabs">
+        {tabs}
+        <div className="panel">
+          {content}
+        </div>
+      </div>
+    )
+  }
+}
+
+class App extends React.Component {
+  state = {
+    countries: [
+      { id: 1, label: 'USA', content: 'Land of the Free, Home of the brave' },
+      { id: 2, label: 'Brazil', content: 'Sunshine, beaches, and Carnival' },
+      { id: 3, label: 'Russia', content: 'World Cup 2018!' },
+    ],
+  }
+
+  render() {
+    return (
+      <div className="state-as-props">
+        <h1>Countries</h1>
+        <Tabs data={this.state.countries} />
+      </div>
+    )
+  }
+}
 
 export { App as Exercise }

@@ -27,6 +27,6 @@ export default async function fetchContent({ shouldError = false } = {}) {
 			div.innerHTML = html
 			const text = div.textContent || div.innerText || ''
 			resolve({ ...quote, content: text })
-		}, 2000)
+		}, 1000)
 	})
 }
