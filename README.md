@@ -1,4 +1,4 @@
-# learning-recompose
+# Learning Recompose
 
 This repository was created for a [workshop event for PhoenixReactJS](https://www.meetup.com/Phoenix-ReactJS/events/241181068/).
 
