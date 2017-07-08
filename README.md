@@ -11,12 +11,15 @@ This repository, specifically, heavily uses ES6+ syntax. If you need a (re)fresh
 ## Getting started
 
 Clone this repository onto your computer.
+```
+$ git clone https://github.com/garretttaco/learning-recompose.git
+```
 
-In the project directory, `learning-recompose`, run:
-
-### `npm i`
-
-### `npm start`
+In the project directory, run:
+```
+$ npm install
+$ npm start
+```
 
 This will run the app in the development mode and should open your browser to [http://localhost:3000](http://localhost:3000).
 
