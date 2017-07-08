@@ -119,6 +119,7 @@ App.propTypes = {}
 ```
 
 ## Resources
+https://github.com/acdlite/recompose/blob/master/docs/API.md
 https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0
 https://gist.github.com/chantastic/fc9e3853464dffdb1e3c
 https://medium.com/@dan_abramov/mixins-are-dead-long-live-higher-order-components-94a0d2f9e750
