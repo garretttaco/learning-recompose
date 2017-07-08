@@ -37,11 +37,11 @@ Before we jump into recompose and all its glory, let us go over a few things.
 - Functional composition: applying one function to the results of another
 - Higher-order component(HoC): a function that takes a component and returns a new component.
 - Container component: A component that is concerned with how things work. Often stateful and tends to serve as a data source.
-- Presentational component: A component that is concerned with how things look. Does not specify how the data is loaded or mutated. Receives data and callbacks exclusively via props. Rarely has state (can be a class component or stateless functional component).
+- Presentational component: A component that is concerned with how things look. Does not specify how the data is loaded or mutated. Receives data and callbacks exclusively via props.
 - Stateless functional component: A pure function that receives props and returns JSX (mostly).
 
 ### What is the problem
-The core problem that React tries to solve is to make building user interfaces more efficiently, with flexible, declarative and easy to maintain code.
+The core problem that React tries to solve is to build user interfaces more efficiently, with flexible, declarative and easy to maintain code.
 With this library, we got components and the HoC pattern. We know that this has been game changing for how we develop SPA and user interfaces now. So what's wrong?
 The issue that arises is that even though we have these wonderful components and can add functionality to them with HoCs, we still fall into bad practices. Combining functionality with UI.
 This makes our codebase more brittle and less reusable. Even if we follow the container/presentational component pattern, we may still declare functionality in the render method of our presentational component. This makes it less reusable. So how do we solve this problem? We want to utilize composition as much as possible.
