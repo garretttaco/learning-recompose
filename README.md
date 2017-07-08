@@ -50,6 +50,7 @@ This makes our codebase more brittle and less reusable. Even if we follow the co
 ### Why use Recompose?
 Let's start with the meaning of Recompose
 > to compose again, differently.
+
 Again, differently is the key. How much composition can we add to our application?
 As we go through these lessons, I want you to keep in mind that the point of converting classes to HoCs and stateless functional components is to get used to that pattern.
 Once we start converting these, you might think to yourself, why would I be swapping this code, out for other code? The reason is because our code is always more maintainable and reusable when it is composed.
