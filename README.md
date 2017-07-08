@@ -55,7 +55,7 @@ Again, differently is the key. How much composition can we add to our applicatio
 As we go through these lessons, I want you to keep in mind that the point of converting classes to HoCs and stateless functional components is to get used to that pattern.
 Once we start converting these, you might think to yourself, why would I be swapping this code, out for other code? The reason is because our code is always more maintainable and reusable when it is composed.
 Lets take a simple example like rendering a spinner. Before using components, you would have to write out the surrounding HTML with a spin class, add the font icon or image then you would use your reusable css to make the magic happen.
-The we move to components. You can abstract all that into a component and only ever have to write that once. However, you still have to write the conditional logic of when to display that component in your class container component.
+Then we move to components. You can abstract all that into a component and only ever have to write that once. However, you still have to write the conditional logic of when to display that component in your class container component.
 Enter Recompose. You can now reuse that logic too! One line of code (two with the import) and you have a spinner that reliably renders when it receives a prop called `loading` for example.
 I admit that sometimes on more simple components, you will end up with more code than if you just used a class component. However, for larger components (we have all seen/written these) it is incredibly more reusable and maintainable to use this level of composition.
 
@@ -79,7 +79,7 @@ compose(
 )(ComponentWillBeRendered)
 ```
 
-### withHandlers
+### `withHandlers`
 Definition: Takes an object map of handler creators or a factory function. These are higher-order functions that accept a set of props and return a function handler
 - `withHandlers` uses currying to access the props inside the handler when called. This can be confusing syntax at first, but you will get the hang of it.
 - Sibling `withHandlers` can not be called from within the same `withHandlers` HoC. There is a [PR](https://github.com/acdlite/recompose/pull/401) for this fix which is not merged in(yet?).
@@ -91,7 +91,7 @@ withHandlers({
 })
 ```
 
-### lifecycle
+### `lifecycle`
 Definition: A higher-order component version of React.Component(). It supports the entire Component API, except the render() method
 - `lifecycle` is a class and the methods are bound to the component's `this` so you can access props by `this.props`.
 
