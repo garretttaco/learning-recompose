@@ -20,6 +20,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 import React, { Component } from 'react'
 import { Alert, Button, Panel } from 'react-bootstrap'
+// import { compose, withState, withHandlers, lifecycle, branch, renderComponent } from 'recompose'
 import fetchContent from './fetchContent'
 import isEmpty from 'lodash/isEmpty'
 import LoadingSpinner from './LoadingSpinner'

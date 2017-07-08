@@ -42,23 +42,17 @@ class RainbowList extends React.Component {
 
   render() {
     const { numRows, rowHeight, renderRowAtIndex } = this.props
-    const totalHeight = rowHeight * numRows
-
+    // const totalHeight = rowHeight * numRows
     const { availableHeight, scrollTop } = this.state
     const scrollBottom = scrollTop + availableHeight
-
     const startIndex = Math.max(0, Math.floor(scrollTop / rowHeight) - 20)
     const endIndex = Math.min(numRows, Math.ceil(scrollBottom / rowHeight) + 20)
-
     const items = []
-
     let index = startIndex
     while (index < endIndex) {
       items.push(<li key={index}>{renderRowAtIndex(index)}</li>)
       index++
     }
-    console.log('--------------items', items)
-
     return (
       <div
         style={{ height: '100%', overflowY: 'scroll' }}
@@ -66,7 +60,8 @@ class RainbowList extends React.Component {
         ref={node => (this.node = node)}
       >
         <ol
-          style={{ paddingTop: startIndex * rowHeight, pointerEvents: 'none', height: totalHeight }}
+          style={{ paddingTop: startIndex * rowHeight, pointerEvents: 'none' }}
+          onScroll={this.handleScroll}
         >
           {items}
         </ol>

@@ -70,11 +70,11 @@ const Header = withRouter(({ location }) => (
       <span>
         {location.pathname.includes('solution') &&
           <Navbar.Text pullRight>
-            <Link to={`./exercise`}>Exercise</Link>
+            <Link to={`./exercise`}>Got to exercise</Link>
           </Navbar.Text>}
         {location.pathname.includes('exercise') &&
           <Navbar.Text pullRight>
-            <Link to={`./solution`}>Solution</Link>
+            <Link to={`./solution`}>Go to solution</Link>
           </Navbar.Text>}
       </span>}
   </Navbar>

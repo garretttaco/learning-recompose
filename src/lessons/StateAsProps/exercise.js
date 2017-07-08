@@ -76,23 +76,17 @@ class Tabs extends React.Component {
   }
 }
 
-class App extends React.Component {
-  state = {
-    countries: [
-      { id: 1, label: 'USA', content: 'Land of the Free, Home of the brave' },
-      { id: 2, label: 'Brazil', content: 'Sunshine, beaches, and Carnival' },
-      { id: 3, label: 'Russia', content: 'World Cup 2018!' },
-    ],
-  }
+const countries = [
+  { id: 1, label: 'USA', content: 'Land of the Free, Home of the brave' },
+  { id: 2, label: 'Brazil', content: 'Sunshine, beaches, and Carnival' },
+  { id: 3, label: 'Russia', content: 'World Cup 2018!' },
+]
 
-  render() {
-    return (
-      <div className="state-as-props">
-        <h1>Countries</h1>
-        <Tabs data={this.state.countries} />
-      </div>
-    )
-  }
-}
+const App = () => (
+  <div className="state-as-props">
+    <h1>Countries</h1>
+    <Tabs data={countries} />
+  </div>
+)
 
 export { App as Exercise }

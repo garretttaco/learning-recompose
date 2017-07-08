@@ -2,7 +2,6 @@
 // Exercise:
 //
 // Using Recompose's HoCs and the container/presentational component pattern:
-// - Convert the App component into a stateless functional component. Abstract the state into an HoC (Hint: use withState).
 // - Convert the Tabs component into a Stateless functional component. Abstract the methods and state into HoCs (Hint: use withState and withHandlers)
 // - Convert Tab component into a stateless functional component. Abstract the method into an HoC. (Hint: use withHandlers)
 //
@@ -75,23 +74,17 @@ const Tabs = compose(
   }),
 )(TabsComponent)
 
-const defaultState = [
+const countries = [
   { id: 1, label: 'USA', content: 'Land of the Free, Home of the brave' },
   { id: 2, label: 'Brazil', content: 'Sunshine, beaches, and Carnival' },
   { id: 3, label: 'Russia', content: 'World Cup 2018!' },
 ]
 
-const AppComponent = ({ countries }) => (
+const App = () => (
   <div className="state-as-props">
     <h1>Countries</h1>
     <Tabs data={countries} />
   </div>
 )
-
-AppComponent.propTypes = {
-  countries: pt.array.isRequired,
-}
-
-const App = withState('countries', 'updateCountries', defaultState)(AppComponent)
 
 export { App as Solution }
