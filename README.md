@@ -73,8 +73,8 @@ Admittedly, sometimes on simple components, you will end up with more code than 
 ```
 compose(
   branch(
-  	props => !props.thisIsTrue,
-  	ComponentWillNotRender,
+    props => !props.thisIsTrue,
+    ComponentWillNotRender,
   ),
 )(ComponentWillBeRendered)
 ```
