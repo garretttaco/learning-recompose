@@ -138,4 +138,4 @@ This repository, specifically, heavily uses ES6+ syntax. If you need a (re)fresh
 
 ## Want to contribute?
 
-If you have any examples in mind to different exercises, I would be more than happy to look them over and merge in a PR. Any contributions would be much appreciated.
+If you have any examples in mind for exercises, I would be more than happy to look them over and merge in a PR. Any contributions would be much appreciated.
