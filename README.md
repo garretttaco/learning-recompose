@@ -52,7 +52,8 @@ Let's start with the meaning of Recompose
 
 Again, differently is the key. How much composition can we add to our application?
 As we go through these lessons, keep in mind that the point of converting classes to HoCs and stateless functional components is to get used to that pattern.
-Once we start converting these, you might think to yourself, why would I be swapping working code out for other code that sometimes is even more verbose? The reason is because our code becomes more maintainable and reusable when it is composed.
+A guideline I recommend, is to place all JSX markup in a SFC with little to no functionality. By starting your components like this, you are enforcing a good pattern in your code base which will help you to avoid mixing concerns.
+Once we start converting the components in our exercises, you might think to yourself, why would I be swapping working code out for other code that sometimes is even more verbose? The reason is because our code becomes more maintainable and reusable when it is composed.
 Let's take a simple example like rendering a spinner. Without components, you would have to write out the surrounding HTML with a spin class, add the font icon or image then you would use your reusable css to make the magic happen.
 Then we move to components. You can abstract all that into a component and only ever have to write that once. However, you still have to write the conditional logic of when to display that component in your class container component.
 Enter Recompose. You can now reuse that logic too! One line of code (two with the import) and you have a spinner that reliably renders when it receives a prop called `loading` (for example).
@@ -128,3 +129,13 @@ This repository was built with [Create React App](https://github.com/facebookinc
 Projects built with Create-React-App include support for ES6 syntax, as well as several unofficial / not-yet-final forms of Javascript syntax such as Class Properties and JSX.  See the list of [language features and polyfills supported by Create-React-App](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#supported-language-features-and-polyfills) for more information.
 
 This repository, specifically, heavily uses ES6+ syntax. If you need a (re)fresher on ES6 syntax, checkout [this great JavaScript primer](https://github.com/ReactTraining/react-subjects/blob/master/JavaScriptPrimer.md)
+
+## What did you think?
+- Do you wish the exercises would cover even more functions from recompose?
+- Did you think the examples were to easy? To hard?
+- Do you think it helped you to learn better by having the exercise logic already complete and all you have to do is convert it to a recompose only solution?
+- Would you like exercises that start with just the structure and you build up to the recompose solution without the already implemented class components?
+
+## Want to contribute?
+
+If you have any examples in mind to different exercises, I would be more than happy to look them over and merge in a PR. Any contributions would be much appreciated.
