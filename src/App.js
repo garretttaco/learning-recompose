@@ -9,11 +9,9 @@ const lessons = [
   { key: 'StateAsProps', displayName: 'State as props' },
   { key: 'RenderStates', displayName: 'Render states' },
   { key: 'RenderProps', displayName: 'Render Props' },
-  { key: 'PropsVsState', displayName: 'Props vs. State' },
   { key: 'Forms', displayName: 'Forms' },
   { key: 'RenderOptimizations', displayName: 'Performance and Render Optimizations' },
   { key: 'Context', displayName: 'Context' },
-  { key: 'Testing', displayName: 'Testing' },
 ]
 
 const LessonRoute = ({ lessonKey, lessonName, incr }) => (
