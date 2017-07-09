@@ -2,7 +2,6 @@
 // Exercise:
 //
 // Using Recompose's HoCs and the container/presentational component pattern:
-// - Convert the App component into a stateless functional component. Abstract the state into an HoC (Hint: use withState).
 // - Convert the Tabs component into a Stateless functional component. Abstract the methods and state into HoCs (Hint: use withState and withHandlers)
 // - Convert Tab component into a stateless functional component. Abstract the method into an HoC. (Hint: use withHandlers)
 //

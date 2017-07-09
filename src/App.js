@@ -9,7 +9,6 @@ const lessons = [
   { key: 'RenderStates', displayName: 'Render states' },
   { key: 'RenderProps', displayName: 'Render Props' },
   { key: 'Forms', displayName: 'Forms' },
-  { key: 'RenderOptimizations', displayName: 'Performance and Render Optimizations' },
   { key: 'Context', displayName: 'Context' },
 ]
 
