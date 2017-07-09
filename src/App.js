@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import { withRouter } from 'react-router'
 import { Panel, ListGroup, ListGroupItem, Navbar, Col, Clearfix } from 'react-bootstrap'
 import * as Lessons from './lessons/index.js'
-import './shared.css'
 
 const lessons = [
   { key: 'StateAsProps', displayName: 'State as props' },
