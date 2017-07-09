@@ -64,14 +64,14 @@ I admit that sometimes on more simple components, you will end up with more code
 
 ## Common Recompose HoC quirks and gotchas I have run into
 ### `compose`
-- Definition: Use to compose multiple HoCs into a single HoC.
+- Use to compose multiple HoCs into a single HoC.
 
 `compose` invokes the given HoCs from right to left, or from the bottom up(if each HoC is on its own line). This is important to receive the props you expect.
 
 `compose(CalledLast, CalledSecond, CalledFirst)(BaseComponent)`
 
 ### `branch`
-- Definition: Accepts a test function and two higher-order components. The test function is passed the props from the owner. If it returns true, the left higher-order component is applied to BaseComponent; otherwise, the right higher-order component is applied. If the right is not supplied, it will by default render the wrapped component.
+- Accepts a test function and two higher-order components. The test function is passed the props from the owner. If it returns true, the left higher-order component is applied to BaseComponent; otherwise, the right higher-order component is applied. If the right is not supplied, it will by default render the wrapped component.
 
 ```
 compose(
@@ -83,7 +83,7 @@ compose(
 ```
 
 ### `withHandlers`
-Definition: Takes an object map of handler creators or a factory function. These are higher-order functions that accept a set of props and return a function handler
+Takes an object map of handler creators or a factory function. These are higher-order functions that accept a set of props and return a function handler
 - `withHandlers` uses currying to access the props inside the handler when called. This can be confusing syntax at first, but you will get the hang of it.
 - Sibling `withHandlers` can not be called from within the same `withHandlers` HoC. There is a [PR](https://github.com/acdlite/recompose/pull/401) for this fix which is not merged in(yet?).
 ```
@@ -93,9 +93,6 @@ withHandlers({
   reset: ({ setCounter }) => () => setCounter(0)
 })
 ```
-
-### `lifecycle`
-Definition: A higher-order component version of React.Component(). It supports the entire Component API, except the render() method
 - `lifecycle` is a class and the methods are bound to the component's `this` so you can access props by `this.props`.
 
 ### Handling propTypes on the stateless functional component
