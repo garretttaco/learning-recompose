@@ -65,12 +65,14 @@ Admittedly, sometimes on simple components, you will end up with more code than 
 
 - `compose` invokes the given HoCs from right to left, or from the bottom up (if each HoC is on its own line). This is important to receive the props you expect.
 
-`compose(CalledLast, CalledSecond, CalledFirst)(BaseComponent)`
+```js
+compose(CalledLast, CalledSecond, CalledFirst)(BaseComponent)
+```
 
 ### `branch`
 > Accepts a test function and two higher-order components. The test function is passed the props from the owner. If it returns true, the left higher-order component is applied to BaseComponent; otherwise, the right higher-order component is applied. If the right is not supplied, it will by default render the wrapped component.
 
-```
+```js
 compose(
   branch(
     props => !props.thisIsTrue,
@@ -83,7 +85,7 @@ compose(
 > Takes an object map of handler creators or a factory function. These are higher-order functions that accept a set of props and return a function handler
 - `withHandlers` uses currying to access the props inside the handler when called. This can be confusing syntax at first, but you will get the hang of it.
 - Sibling `withHandlers` can not be called from within the same `withHandlers` HoC. There is a [PR](https://github.com/acdlite/recompose/pull/401) for this fix which is not merged in (yet?).
-```
+```js
 withHandlers({
   increment: ({ setCounter }) => () => setCounter(n => n + 1),
   decrement: ({ setCounter }) => () =>  setCounter(n => n - 1),
@@ -95,7 +97,7 @@ withHandlers({
 - Do not wrap the component with your enhance HoC while declaring propTypes with `MyComponent.propTypes =` syntax because you will incorrectly get propTypes errors. Instead create a SFC, add your propTypes and then wrap the component with the HoC.
 
 Do this:
-```
+```js
 const AppComponent = () => (
   <div />
 )
@@ -106,7 +108,7 @@ const App = enhance(AppComponent)
 ```
 
 Not this:
-```
+```js
 const App = enhance(() => (
   <div />
 ))
