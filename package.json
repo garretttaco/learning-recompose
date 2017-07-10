@@ -1,5 +1,6 @@
 {
   "name": "learning-recompose",
+  "homepage": "http://garretttaco.github.io/learning-recompose",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -38,6 +39,7 @@
     "extract-text-webpack-plugin": "2.1.0",
     "file-loader": "0.11.1",
     "fs-extra": "3.0.1",
+    "gh-pages": "^1.0.0",
     "html-webpack-plugin": "2.28.0",
     "imports": "^1.0.0",
     "jest": "20.0.3",
@@ -62,7 +64,9 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom"
+    "test": "node scripts/test.js --env=jsdom",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "jest": {
     "collectCoverageFrom": [
