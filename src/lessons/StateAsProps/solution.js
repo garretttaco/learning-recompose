@@ -1,7 +1,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Exercise:
 //
-// Using Recompose's HoCs and the container/presentational component pattern:
+// Currently in React, there is no way to have local state on a component except by using a class component.
+// Using this.setState is a very basic React concept that most React developers interact with everyday.
+// Why don't we try something a little different. Let's compose these components further.
+// With the tabs example we have below, let's use Recompose to break apart the functionality from
+// UI by following the container/presentational component pattern.
 // - Convert the Tabs component into a Stateless functional component. Abstract the methods and state into HoCs (Hint: use withState and withHandlers)
 // - Convert Tab component into a stateless functional component. Abstract the method into an HoC. (Hint: use withHandlers)
 //
@@ -13,7 +17,6 @@ import React from 'react'
 import pt from 'prop-types'
 import { compose, withState, withHandlers } from 'recompose'
 import classnames from 'classnames'
-import './index.scss'
 
 const TabComponent = ({ content, style, onClick, isActive }) => {
   const classNames = classnames('tab', { active: isActive })

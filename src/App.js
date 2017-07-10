@@ -6,10 +6,8 @@ import * as Lessons from './lessons/index.js'
 
 const lessons = [
   { key: 'StateAsProps', displayName: 'State as props' },
+  { key: 'PureRenderFunctions', displayName: 'Pure render functions' },
   { key: 'RenderStates', displayName: 'Render states' },
-  { key: 'RenderProps', displayName: 'Render Props' },
-  { key: 'Forms', displayName: 'Forms' },
-  { key: 'Context', displayName: 'Context' },
 ]
 
 const LessonRoute = ({ lessonKey, lessonName, incr }) => (

@@ -44,3 +44,21 @@
     margin-top: 1em;
   }
 }
+// Horizontal Gutters
+.howl {
+
+  /**
+   * Apply to containers to get nice gutters between horizontal items
+   */
+
+  // Reset all first-child elements to have no horizontal margin
+  > * {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  // Its the "Lobotomized Owl"
+  > * + * {
+    margin-left: .5em;
+  }
+}

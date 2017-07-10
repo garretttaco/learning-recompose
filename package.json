@@ -5,6 +5,7 @@
   "dependencies": {
     "bootstrap-sass": "^3.3.7",
     "form-serialize": "^0.7.2",
+    "moment": "^2.18.1",
     "qwest": "^4.4.6",
     "react": "^15.5.4",
     "react-addons-test-utils": "^15.6.0",

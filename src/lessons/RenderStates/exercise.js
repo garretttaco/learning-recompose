@@ -2,7 +2,7 @@
 // Exercise:
 //
 // Showing feedback in the UI is very important for user experience. However, this can lead to messy render functions.
-// Let's utilize HoCs to better organization our code to handle these different states.
+// Let's utilize HoCs to better organize our code to handle these different states.
 // Convert the class component into a stateless functional component by extracting the state, methods and lifecycle methods into Recompose HoCs.
 // - Extract the conditional render logic, for loading, error and success into their own components.
 // By using Recompose's branch HoC, https://github.com/acdlite/recompose/blob/master/docs/API.md#branch do the following
@@ -26,7 +26,6 @@ import isEmpty from 'lodash/isEmpty'
 import LoadingSpinner from './LoadingSpinner'
 import QuoteLeft from 'react-icons/lib/fa/quote-left'
 import QuoteRight from 'react-icons/lib/fa/quote-right'
-import './index.scss'
 
 export class App extends Component {
   state = {
