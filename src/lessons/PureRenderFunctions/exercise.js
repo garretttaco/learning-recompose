@@ -4,7 +4,9 @@
 // A guideline I recommend, is to place all JSX markup in a SFC with little to no functionality.
 // By starting your components like this, you are enforcing a good pattern in your code base which will help you to avoid mixing concerns.
 // Let's practice this on our scheduler below.
-// - Abstract out the functionality that we have, in DisplaySchedule, that converts the state object to the next scheduled time. (Hint: the withProps HoC might be useful for this).
+// - Abstract out the functionality that we have, in DisplaySchedule, that converts the state object to the next scheduled time.
+// (Hint: the withProps HoC might be useful for this).
+// (Hint: The resulting DisplaySchedule SFC should only have a return)
 // - Abstract the state from App into an HoC (Hint: withState may be useful).
 // - Move the class method, updateSchedule, on ConfigureComponent into a withHandlers HoC.
 //
