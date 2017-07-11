@@ -15,7 +15,8 @@
 // Got extra time?
 //
 // - Once we successfully load the content, use the branch HoC on a component that conditionally renders the success message.
-// (Hint: renderNothing might come in handy, https://github.com/acdlite/recompose/blob/master/docs/API.md#rendernothing)
+// - You'll want to break out a couple smaller components for branching, think about how the render method of App could be broken up.
+// - renderNothing might come in handy, https://github.com/acdlite/recompose/blob/master/docs/API.md#rendernothing
 // - Make sure the success message still disappears after 1.5 seconds.
 ////////////////////////////////////////////////////////////////////////////////
 import React, { Component } from 'react'
