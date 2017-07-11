@@ -42,7 +42,9 @@ Before we jump into recompose and all its glory, let us go over a few things.
 ### What is the problem?
 The core problem that React tries to solve is to build user interfaces more efficiently, with flexible, declarative and easy to maintain code.
 With React, we got components and the HoC pattern. We know that this has been game changing for how we develop SPAs and user interfaces. So what's wrong?
+
 The issue is that even though we have these wonderful components and can add functionality to them with HoCs, we still fall into bad practices: combining functionality with UI. (Other frameworks like Angular are more forceful in separation by using template files for the UI/markup.)
+
 This makes our codebase more brittle and less reusable. Even if we follow the container/presentational component pattern, we can still declare functionality in the render method of our presentational component, which makes it less reusable. So how do we solve this problem? We want to utilize composition as much as possible.
 
 
@@ -52,11 +54,16 @@ Let's start with the meaning of Recompose
 
 Again, differently is the key. How much composition can we add to our application?
 As we go through these lessons, keep in mind that the point of converting classes to HoCs and stateless functional components is to get used to that pattern.
+
 A guideline I recommend, is to place all JSX markup in a SFC with little to no functionality. By starting your components like this, you are enforcing a good pattern in your code base which will help you to avoid mixing concerns.
+
 Once we start converting the components in our exercises, you might think to yourself, why would I be swapping working code out for other code that sometimes is even more verbose? The reason is because our code becomes more maintainable and reusable when it is composed.
 Let's take a simple example like rendering a spinner. Without components, you would have to write out the surrounding HTML with a spin class, add the font icon or image then you would use your reusable css to make the magic happen.
+
 Then we move to components. You can abstract all that into a component and only ever have to write that once. However, you still have to write the conditional logic of when to display that component in your class container component.
+
 Enter Recompose. You can now reuse that logic too! One line of code (two with the import) and you have a spinner that reliably renders when it receives a prop called `loading` (for example).
+
 Admittedly, sometimes on simple components, you will end up with more code than if you just used a class component. However, for larger components (we have all seen/written these) it is incredibly more reusable and maintainable to use this level of composition.
 
 ## Common Recompose HoC quirks and gotchas to be aware of
