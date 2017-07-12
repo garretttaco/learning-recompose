@@ -6,7 +6,7 @@
 // Why don't we try something a little different. Let's compose these components further.
 // With the tabs example we have below, let's use Recompose to break apart the functionality from
 // UI by following the container/presentational component pattern.
-// - Convert the Tabs component into a Stateless functional component. Abstract the methods and state into HoCs (Hint: use withState and withHandlers)
+// - Convert the Tabs component into a Stateless functional component. Abstract the method and state into HoCs (Hint: use withState)
 // - Convert Tab component into a stateless functional component. Abstract the method into an HoC. (Hint: use withHandlers)
 //
 // Don't forget to refer to the recompose docs!
@@ -15,7 +15,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 import React from 'react'
 import pt from 'prop-types'
-import { compose, withState, withHandlers } from 'recompose'
+import { withState, withHandlers } from 'recompose'
 import classnames from 'classnames'
 
 const TabComponent = ({ content, style, onClick, isActive }) => {
@@ -68,14 +68,12 @@ TabsComponent.propTypes = {
   updateActiveTabIndex: pt.func.isRequired,
 }
 
-const Tabs = compose(
-  withState('activeTabIndex', 'updateActiveTabIndex', 0),
-  withHandlers({
-    selectTabIndex: ({ updateActiveTabIndex }) => activeTabIndex => {
-      updateActiveTabIndex(activeTabIndex)
-    },
-  }),
-)(TabsComponent)
+const Tabs = withState('activeTabIndex', 'updateActiveTabIndex', 0)(TabsComponent)
+// withHandlers({
+//   selectTabIndex: ({ updateActiveTabIndex }) => activeTabIndex => {
+//     updateActiveTabIndex(activeTabIndex)
+//   },
+// }),
 
 const countries = [
   { id: 1, label: 'USA', content: 'Land of the Free, Home of the brave' },

@@ -15,7 +15,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 import React from 'react'
 import pt from 'prop-types'
-// import { compose, withState, withHandlers } from 'recompose'
+// import { withState, withHandlers } from 'recompose'
 import classnames from 'classnames'
 
 class Tab extends React.Component {
